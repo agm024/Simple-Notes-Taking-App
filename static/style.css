@@ -1,0 +1,624 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("./img.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+ul li a {
+    color: #333;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("./img.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper {
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+}
+
+.input-box .toggle-password {
+  cursor: pointer;
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 3px;
+}
+
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 300;
+}
+
+.wrapper .register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}
+
+form{
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.notes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.note-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-link, .edit-link {
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+}
+
+.note-link:hover, .edit-link:hover {
+    text-decoration: underline;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Links section styling */
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+.container-view{
+    width: 420px;
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color:black;
+    border-radius: 10px;
+    padding: 60px 40px;
+}
+.container-view h1{
+    position: relative;
+}
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+.btn-view {
+    background-color: #00ff51;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.btn-view:hover {
+    background-color: #017b3c;
+}
+.btn-edit {
+    background-color: #ffff00;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.btn-edit:hover {
+    background-color: #ffb700;
+}
+    @media only screen and (max-width: 734px) {
+        .wrapper {
+            width: 100%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px 40px;
+        }
+    
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+    
+        .wrapper .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+    
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px;
+        }
+    
+        .input-box input::placeholder {
+            color: #fff;
+        }
+    
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #fff;
+        }
+    
+        .input-box .toggle-password {
+            cursor: pointer;
+        }
+    
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+        }
+    
+        .remember-forgot label input {
+            accent-color: #fff;
+            margin-right: 3px;
+        }
+    
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+        }
+    
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+    
+        .wrapper .btn {
+            width: 100%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 300;
+        }
+    
+        .wrapper .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    
+        .register-link a {
+            color: #fff;
+            text-decoration: none;
+        }
+    
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    
+        .wrapper .register-link .active {
+            color: #ff007a;
+        }
+    }
+    @media only screen and (max-width: 1366px) and (orientation: portrait) {
+        .wrapper {
+            width: 90%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    
+        .wrapper h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+    
+        .input-box {
+            width: 100%;
+            height: 45px;
+            margin: 20px 0;
+        }
+    
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 30px;
+            font-size: 14px;
+            color: #fff;
+            padding: 15px 30px 15px 15px;
+        }
+    
+        .input-box i {
+            font-size: 18px;
+        }
+    
+        .wrapper .remember-forgot {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    
+        .wrapper .btn {
+            width: 100%;
+            height: 40px;
+            background: #fff;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+    
+        .register-link {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    
+        .register-link a {
+            font-size: 14px;
+        }
+    }
+    
+    @media only screen and (max-width: 1366px) and (orientation: landscape) {
+        .wrapper {
+            width: 85%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    
+        .wrapper h1 {
+            font-size: 24px; /* Slightly smaller for landscape */
+            text-align: center;
+        }
+    
+        .input-box {
+            width: 100%;
+            height: 40px; /* Reduced height for landscape */
+            margin: 15px 0; /* Reduced margin */
+        }
+    
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 25px; /* Adjusted border radius */
+            font-size: 12px; /* Smaller font size for landscape */
+            color: #fff;
+            padding: 10px 20px 10px 10px; /* Adjusted padding */
+        }
+    
+        .input-box i {
+            font-size: 16px; /* Slightly smaller icon size */
+        }
+    
+        .wrapper .remember-forgot {
+            font-size: 12px; /* Adjusted font size */
+            margin: 5px 0; /* Reduced margin */
+        }
+    
+        .wrapper .btn {
+            width: 100%;
+            height: 35px; /* Reduced button height */
+            background: #fff;
+            border-radius: 25px; /* Adjusted for consistency */
+            font-size: 12px; /* Smaller font size */
+        }
+    
+        .register-link {
+            font-size: 12px; /* Adjusted font size */
+            margin: 5px 0; /* Reduced margin */
+        }
+    
+        .register-link a {
+            font-size: 12px; /* Adjusted font size */
+        }
+    }
+    
