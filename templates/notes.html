@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>All Notes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Note</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in notes %}
+                <tr>
+                    <td>{{ note.content }}</td>
+                    <td>
+                        <form action="{{ url_for('view_note', note_id=loop.index0) }}">
+                            <button type="submit" class="btn btn-view">View</button>
+                        </form>
+                        <form action="{{ url_for('edit_note', note_id=loop.index0) }}">
+                            <button type="submit" class="btn btn-edit">Edit</button>
+                            </form>
+                        <form action="{{ url_for('delete_note', note_id=loop.index0) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="links">
+            <a href="{{ url_for('index') }}">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
