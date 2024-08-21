@@ -193,6 +193,3 @@ def delete_note(note_id):
 def notes():
     notes = load_notes()
     return render_template('notes.html', notes=notes)
-
-if __name__ == '__main__':
-    app.run(debug=True)
