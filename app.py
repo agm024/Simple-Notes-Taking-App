@@ -21,7 +21,7 @@ def load_users():
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute('SELECT id, password FROM users')
-    users = dict(cursor.fetchall())
+    users = {row['id']: row['password'] for row in cursor.fetchall()}
     conn.close()
     return users
 
@@ -42,16 +42,29 @@ def load_user(user_id):
 def load_notes():
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('SELECT id, content, password FROM notes')
+    cursor.execute('SELECT id, title, content, password FROM notes')
     notes = cursor.fetchall()
     conn.close()
-    return [{'id': n['id'], 'content': n['content'], 'password': n['password']} for n in notes]
+    return [{'id': n['id'], 'title': n['title'], 'content': n['content'], 'password': n['password']} for n in notes]
 
-def save_notes(notes):
+def save_note(title, content, password):
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM notes')  # Clear existing notes
-    cursor.executemany('INSERT INTO notes (content, password) VALUES (?, ?)', [(n['content'], n['password']) for n in notes])
+    cursor.execute('INSERT INTO notes (title, content, password) VALUES (?, ?, ?)', (title, content, password))
+    conn.commit()
+    conn.close()
+
+def update_note(note_id, title, content, password):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('UPDATE notes SET title = ?, content = ?, password = ? WHERE id = ?', (title, content, password, note_id))
+    conn.commit()
+    conn.close()
+
+def delete_note_from_db(note_id):
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM notes WHERE id = ?', (note_id,))
     conn.commit()
     conn.close()
 
@@ -106,23 +119,28 @@ def logout():
 def index():
     notes = load_notes()
     if request.method == 'POST':
+        note_title = request.form.get('title')
         note_content = request.form.get('note')
         note_password = request.form.get('password')
         
-        if note_content:
+        if note_title and note_content:
             if note_password:
                 hashed_password = bcrypt.generate_password_hash(note_password).decode('utf-8')
             else:
                 hashed_password = None
-            new_note = {"content": note_content, "password": hashed_password}
-            notes.append(new_note)
-            save_notes(notes)
+            save_note(note_title, note_content, hashed_password)
             flash('Note added successfully.', 'success')
             return redirect(url_for('index'))
         else:
-            flash('Note content is required.', 'danger')
+            flash('Note title and content are required.', 'danger')
     
     return render_template('index.html', notes=notes)
+
+@app.route('/notes')
+@login_required
+def notes():
+    notes = load_notes()
+    return render_template('notes.html', notes=notes)
 
 @app.route('/view/<int:note_id>', methods=['GET', 'POST'])
 @login_required
@@ -130,13 +148,14 @@ def view_note(note_id):
     notes = load_notes()
     
     if 0 <= note_id < len(notes):
-        if notes[note_id]['password'] is None:
-            return render_template('view_note.html', note=notes[note_id]['content'], note_id=note_id)
+        note = notes[note_id]
+        if note['password'] is None:
+            return render_template('view_note.html', note=note, note_id=note_id)
         
         if request.method == 'POST':
             note_password = request.form.get('password')
-            if bcrypt.check_password_hash(notes[note_id]['password'], note_password):
-                return render_template('view_note.html', note=notes[note_id]['content'], note_id=note_id)
+            if bcrypt.check_password_hash(note['password'], note_password):
+                return render_template('view_note.html', note=note, note_id=note_id)
             else:
                 flash('Incorrect password.', 'danger')
         
@@ -152,24 +171,23 @@ def edit_note(note_id):
     
     if 0 <= note_id < len(notes):
         if request.method == 'POST':
+            new_title = request.form.get('title')
             new_content = request.form.get('note')
             new_password = request.form.get('password')
             
-            if new_content:
+            if new_title and new_content:
                 if new_password:
                     hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
                 else:
                     hashed_password = None
                 
-                notes[note_id]['content'] = new_content
-                notes[note_id]['password'] = hashed_password
-                save_notes(notes)
+                update_note(note_id, new_title, new_content, hashed_password)
                 flash('Note updated successfully.', 'success')
                 return redirect(url_for('index'))
             else:
-                flash('Note content is required.', 'danger')
+                flash('Note title and content are required.', 'danger')
         
-        return render_template('edit_note.html', note=notes[note_id]['content'], password=notes[note_id]['password'])
+        return render_template('edit_note.html', title=notes[note_id]['title'], note=notes[note_id]['content'], password=notes[note_id]['password'])
     else:
         flash('Note not found.', 'danger')
         return redirect(url_for('index'))
@@ -177,19 +195,9 @@ def edit_note(note_id):
 @app.route('/delete/<int:note_id>', methods=['POST'])
 @login_required
 def delete_note(note_id):
-    notes = load_notes()
-    
-    if 0 <= note_id < len(notes):
-        notes.pop(note_id)
-        save_notes(notes)
-        flash('Note deleted successfully.', 'success')
-    else:
-        flash('Note not found.', 'danger')
-    
+    delete_note_from_db(note_id)
+    flash('Note deleted successfully.', 'success')
     return redirect(url_for('index'))
 
-@app.route('/notes')
-@login_required
-def notes():
-    notes = load_notes()
-    return render_template('notes.html', notes=notes)
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -4,42 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h2>Notes</h2>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="flash-messages">
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-        <form method="post">
-            <div class="form-group">
-                <label for="note">Note:</label>
-                <textarea id="note" name="note" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="password">Password (optional):</label>
-                <input type="password" id="password" name="password">
-            </div>
+        <h1>Welcome, {{ current_user.id }}</h1>
+        <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+        <form action="{{ url_for('index') }}" method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="note" placeholder="Write your note here..." required></textarea>
+            <input type="password" name="password" placeholder="Password (optional)">
             <button type="submit">Add Note</button>
         </form>
+        <h2>Your Notes</h2>
         <ul>
             {% for note in notes %}
-                <li>
-                    <a href="{{ url_for('view_note', note_id=loop.index0) }}">{{ note['content'][:50] }}{% if note['content']|length > 50 %}...{% endif %}</a>
-                    <form action="{{ url_for('delete_note', note_id=loop.index0) }}" method="post" style="display:inline;">
-                        <button type="submit">Delete</button>
-                    </form>
-                    <a href="{{ url_for('edit_note', note_id=loop.index0) }}">Edit</a>
-                </li>
+            <li>{{ note.title }}</li>
             {% endfor %}
         </ul>
+        <a href="{{ url_for('notes') }}">View All Notes</a>
     </div>
+    <footer>
+        <p>Developed by Me</p>
+    </footer>
 </body>
 </html>
