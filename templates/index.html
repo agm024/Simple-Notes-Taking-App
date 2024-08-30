@@ -13,19 +13,13 @@
         <form action="{{ url_for('index') }}" method="POST">
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="note" placeholder="Write your note here..." required></textarea>
-            <input type="password" name="password" placeholder="Password (optional)">
+            <input type="password" name="password" placeholder="Password (optional)"><br>&nbsp;<br>
             <button type="submit">Add Note</button>
         </form>
-        <h2>Your Notes</h2>
-        <ul>
-            {% for note in notes %}
-            <li>{{ note.title }}</li>
-            {% endfor %}
-        </ul>
         <a href="{{ url_for('notes') }}">View All Notes</a>
     </div>
     <footer>
-        <p>Developed by Me</p>
+        <p>Developed by Agastya Malunjkar</p>
     </footer>
 </body>
 </html>

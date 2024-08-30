@@ -1,73 +1,160 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    line-height: 1.6;
     margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+header, footer {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
 }
 
-h2 {
-    margin-top: 0;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input {
+header {
+    position: fixed;
     width: 100%;
-    padding: 8px;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Navbar Styles */
+nav {
+    float: right;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Forms */
+form {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+form input, form textarea {
+    width: 90%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    border: none;
+form button {
+    background: #333;
     color: #fff;
+    border: none;
+    padding: 0.75rem;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #218838;
+form button:hover {
+    background: #555;
 }
 
-.flash-messages {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 15px 0;
+.container .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+  }
+  
+  .register-link p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .register-link p a:hover {
+    text-decoration: underline;
+  }
+
+/* Notes Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
 }
 
-.flash-messages li {
-    padding: 10px;
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+/* Alerts */
+.flash-message {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
     border-radius: 4px;
-    margin-bottom: 10px;
 }
 
-.flash-messages .success {
-    background-color: #d4edda;
+.flash-message.success {
+    background: #d4edda;
     color: #155724;
 }
 
-.flash-messages .danger {
-    background-color: #f8d7da;
+.flash-message.danger {
+    background: #f8d7da;
     color: #721c24;
+}
+
+.flash-message.info {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header, footer {
+        text-align: center;
+    }
+
+    nav {
+        float: none;
+        margin-top: 1rem;
+    }
+
+    nav a {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
 }
