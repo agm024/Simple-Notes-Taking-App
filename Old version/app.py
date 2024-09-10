@@ -4,10 +4,12 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import sqlite3
 import os
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 
 load_dotenv()
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 bcrypt = Bcrypt(app)
@@ -202,6 +204,3 @@ def delete_note(note_id):
     delete_note_from_db(note_id)
     flash('Note deleted successfully.', 'success')
     return redirect(url_for('index'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
