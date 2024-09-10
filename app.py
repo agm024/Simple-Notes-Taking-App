@@ -4,7 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Replace with your actual secret key
+app.secret_key = '85d6658ed2f7019021f1c5b2f9e2770630b73059441718b96cde3849b14aa3ff'  # Replace with your actual secret key
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
