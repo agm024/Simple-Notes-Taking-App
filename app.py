@@ -2,9 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import sqlite3
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = '85d6658ed2f7019021f1c5b2f9e2770630b73059441718b96cde3849b14aa3ff'  # Replace with your actual secret key
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
@@ -14,7 +18,7 @@ DATABASE = 'app.db'
 
 def get_db():
     conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row  # Allows dictionary-like access to rows
+    conn.row_factory = sqlite3.Row  
     return conn
 
 def load_users():
